@@ -1,15 +1,15 @@
 import { Injectable, effect } from '@angular/core';
+import { Router } from '@angular/router';
 
-// BASE SIGNALS SERVICE
+// SERVICES
 import { BaseSignalService } from '../base/base-signal.service';
+import { AuthStorageService } from '../../storage/auth/auth-storage.service';
 
 // MODEL
 import { AuthSignalModel } from './auth.signal.model';
 
 // DEFAULT
 import { DEFAULT_AUTH_VALUE } from './auth.signal.default';
-import { Router } from '@angular/router';
-import { AuthStorageService } from '../../storage/auth/auth-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,17 @@ export class AuthSignalService extends BaseSignalService<AuthSignalModel> {
     private authStorageService: AuthStorageService
   ) {
     super();
+    effect(() => this.authStorageService.set(this.snapshot));
+    this.init();
+  }
 
-    this.set(DEFAULT_AUTH_VALUE);
+  private init() {
+    const storage = this.authStorageService.get();
+    if (storage.signed) {
+      return this.set(storage)
+    }
 
-    effect(() => {
-      this.authStorageService.set(this.snapshot);
-    });
+    return this.set(DEFAULT_AUTH_VALUE);
   }
 
   login(token: string): void {
@@ -34,7 +39,7 @@ export class AuthSignalService extends BaseSignalService<AuthSignalModel> {
   }
 
   logout(): void {
-    this.update(DEFAULT_AUTH_VALUE);
+    this.set(DEFAULT_AUTH_VALUE);
     this.router.navigate(['/login']);
   }
 }

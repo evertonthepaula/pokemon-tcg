@@ -8,7 +8,6 @@ import { BaseStorageService } from '../base/base-storage.service';
 })
 export class AuthStorageService extends BaseStorageService<AuthSignalModel>{
   constructor() {
-    super();
-    this.key = 'auth';
+    super('auth');
   }
 }

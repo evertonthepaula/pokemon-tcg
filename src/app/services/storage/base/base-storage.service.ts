@@ -1,5 +1,9 @@
-export class BaseStorageService<T> {
-  protected key!: string;
+export abstract class BaseStorageService<T> {
+  private key!: string;
+
+  constructor(key: string) {
+    this.key = key;
+  }
 
   /**
    * used to updates a single value in a object store
@@ -8,9 +12,7 @@ export class BaseStorageService<T> {
    * @param data - the new data to be saved
    */
   update<K extends keyof T>(key: K, data: T[K]): void {
-    const currentValue = JSON.parse(this.get() || '');
-    const newStorage = { ...currentValue, [key]: data }
-    this.set(newStorage);
+    this.set({ ...this.get(), [key]: data });
   }
 
   /**
@@ -19,19 +21,14 @@ export class BaseStorageService<T> {
    * @param value - the new storage value
    */
   set(value: T): void {
-
-    console.log('this.key', this.key);
-    console.log('value', value);
-
-
     sessionStorage.setItem(this.key, JSON.stringify(value));
   }
 
   /**
    * Returns a storage value
    */
-  get(): string | null {
-    return sessionStorage.getItem(this.key);
+  get(): T {
+    return JSON.parse(sessionStorage.getItem(this.key) || '');
   }
 
   /**

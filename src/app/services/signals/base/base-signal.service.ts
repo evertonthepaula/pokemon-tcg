@@ -1,6 +1,6 @@
 import { Signal, computed, signal } from '@angular/core';
 
-export class BaseSignalService<T> {
+export abstract class BaseSignalService<T> {
   private readonly state = signal({} as T);
 
   /**
@@ -16,7 +16,7 @@ export class BaseSignalService<T> {
    * @param initialState - the initial state value
    */
   protected set(initialState: T) {
-    this.state.set(initialState);
+    this.state.set(initialState)
   }
 
   /**
