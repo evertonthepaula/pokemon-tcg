@@ -1,27 +1,42 @@
-# PTCGAngular
+# PTCG - Pokémon Trading Card Game ( Angular 17 + Tailwind CSS )
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+## Objetivos do projeto
 
-## Development server
+- Playground para novas funcionalidades do Angular 17 e aprimorar os conhecimentos das melhorias lançadas no Angular 16 e Angular 15.
+- Conhecer Tailwind CSS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## implementado até o momento
 
-## Code scaffolding
+- Angular V15
+  - Standalone Components
+  - Standalone Routes
+- Angular V16
+  - Angular Signals
+  - DestroyRef Provider,
+  - Required Inputs
+- Angular v17
+  - Control flow blocks
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Descrição do projeto PTCG
 
-## Build
+### Lista de baralhos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- O usuário pode ver seus baralhos;
+- O usuário pode criar um novo baralho;
+- O usuário pode remover um baralho;
+- O usuário pode editar um baralho;
+- O usuário pode clicar num baralho para visualizar seus detalhes.
 
-## Running unit tests
+### Criação de um baralho
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- O usuário pode colocar um nome no seu baralho;
+- O usuário pode inserir cartas no baralho;
+- O baralho tem que ter no mínimo 24 cartas e no máximo 60;
+- Só podem ter 4 cartas com o mesmo nome, no baralho. (Nome não id);
+- Após salvar o baralho voltamos para a página de lista de baralhos atualizada;
+- O baralho será salvo apenas em memória.
 
-## Running end-to-end tests
+### Detalhes do baralho
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- O usuário consegue ver quantos pokemons e cartas de treinador existem no baralho. (atributo supertype)
+- O usuário consegue ver de quantas cores é o baralho, quantos types únicos existem no baralho.
