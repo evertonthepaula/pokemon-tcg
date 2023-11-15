@@ -1,5 +1,5 @@
 import { CanActivateChildFn, Router } from '@angular/router';
-import { effect, inject } from '@angular/core';
+import { inject } from '@angular/core';
 
 import { AuthSignalService } from '../services/signals/auth/auth-signal.service';
 import { AuthSignalModel } from '../services/signals/auth/auth.signal.model';
