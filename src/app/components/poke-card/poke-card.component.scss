@@ -1,0 +1,268 @@
+// https://codepen.io/simeydotme/pen/PrQKgo
+// https://codepen.io/chanid/pen/BgrVRo
+
+.poke-card {
+  position: relative;
+  overflow: hidden;
+}
+.poke-card:before,
+.poke-card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(115deg,
+      transparent 0%,
+      rgb(0, 231, 255) 30%,
+      rgb(255, 0, 231) 70%,
+      transparent 100%);
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  animation: holoGradient 15s ease infinite;
+}
+
+.poke-card:after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+  background-position: center;
+  background-size: 180%;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  z-index: 2;
+  animation: holoSparkle 20s ease infinite;
+}
+
+.poke-card.active:before {
+  opacity: 0.5;
+  animation: none;
+  transition: none;
+  background-image: linear-gradient(115deg,
+      transparent 0%,
+      transparent 25%,
+      rgb(0, 231, 255) 45%,
+      rgb(255, 0, 231) 55%,
+      transparent 70%,
+      transparent 100%);
+}
+
+@keyframes holoSparkle {
+  0% {
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  95% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes holoGradient {
+  3% {
+    opacity: 0;
+  }
+
+  5% {
+    background-position: 0% 0%;
+  }
+
+  7% {
+    opacity: 0.5;
+  }
+
+  9% {
+    background-position: 100% 100%;
+  }
+
+  11% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+    background-position: 100% 100%;
+  }
+
+  55% {
+    opacity: 0.3;
+  }
+
+  70% {
+    opacity: 0;
+    background-position: 0% 0%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// :root {
+//   --color1: rgb(0, 231, 255);
+//   --color2: rgb(255, 0, 231);
+//   --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
+//   --charizard1: #fac;
+//   --charizard2: #ddccaa;
+//   --charizardfront: url(https://assets.codepen.io/13471/charizard-gx.webp);
+//   --pika1: #54a29e;
+//   --pika2: #a79d66;
+//   --pikafront: url(https://assets.codepen.io/13471/pikachu-gx.webp);
+//   --eevee1: #efb2fb;
+//   --eevee2: #acc6f8;
+//   --eeveefront: url(https://assets.codepen.io/13471/eevee-gx.webp);
+//   --mewtwo1: #efb2fb;
+//   --mewtwo2: #acc6f8;
+//   --mewtwofront: url(https://assets.codepen.io/13471/mewtwo-gx.webp);
+// }
+
+
+
+// .poke-card {
+//   &:hover {
+//     box-shadow:
+//       -20px -20px 30px -25px var(--color1),
+//       20px 20px 30px -25px var(--color2),
+//       -7px -7px 10px -5px var(--color1),
+//       7px 7px 10px -5px var(--color2),
+//       0 0 13px 4px rgba(255, 255, 255, 0.3),
+//       0 55px 35px -20px rgba(0, 0, 0, 0.5);
+//   }
+// }
+
+// .poke-card:before,
+// .poke-card:after {
+//   content: "";
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   top: 0;
+//   background-repeat: no-repeat;
+//   opacity: .5;
+//   mix-blend-mode: color-dodge;
+//   transition: all .33s ease;
+// }
+
+// .poke-card:before {
+//   background-position: 50% 50%;
+//   background-size: 300% 300%;
+//   background-image: linear-gradient(115deg,
+//       transparent 0%,
+//       var(--color1) 25%,
+//       transparent 47%,
+//       transparent 53%,
+//       var(--color2) 75%,
+//       transparent 100%);
+//   opacity: .5;
+//   filter: brightness(.5) contrast(1);
+//   z-index: 1;
+// }
+
+// .poke-card:after {
+//   opacity: 1;
+//   background-image: url("https://assets.codepen.io/13471/sparkles.gif"),
+//     url(https://assets.codepen.io/13471/holo.png),
+//     linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
+//   background-position: 50% 50%;
+//   background-size: 160%;
+//   background-blend-mode: overlay;
+//   z-index: 2;
+//   filter: brightness(1) contrast(1);
+//   transition: all .33s ease;
+//   mix-blend-mode: color-dodge;
+//   opacity: .75;
+// }
+
+// .poke-card.active:after,
+// .poke-card:hover:after {
+//   filter: brightness(1) contrast(1);
+//   ;
+//   opacity: 1;
+// }
+
+// .poke-card.active,
+// .poke-card:hover {
+//   animation: none;
+//   transition: box-shadow 0.1s ease-out;
+// }
+
+// .poke-card.active:before,
+// .poke-card:hover:before {
+//   animation: none;
+//   background-image: linear-gradient(110deg,
+//       transparent 25%,
+//       var(--color1) 48%,
+//       var(--color2) 52%,
+//       transparent 75%);
+//   background-position: 50% 50%;
+//   background-size: 250% 250%;
+//   opacity: .88;
+//   filter: brightness(.66) contrast(1.33);
+//   transition: none;
+// }
+
+// .poke-card.active:before,
+// .poke-card:hover:before,
+// .poke-card.active:after,
+// .poke-card:hover:after {
+//   animation: none;
+//   transition: none;
+// }
