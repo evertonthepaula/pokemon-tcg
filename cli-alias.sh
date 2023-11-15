@@ -32,6 +32,10 @@ case "$type" in
     echo "Criando Guard $name"
     ng generate service guards/$name
     ;;
+  "interceptor")
+    echo "Criando Interceptor $name"
+    ng generate interceptor services/interceptors/$name
+    ;;
   *)
     echo "Criando Component $name"
     ng generate component components/$name --skip-import --standalone --change-detection OnPush
