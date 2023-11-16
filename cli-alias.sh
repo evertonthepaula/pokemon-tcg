@@ -10,11 +10,11 @@ case "$type" in
     ;;
   "http")
     echo "Criando Service $name"
-    ng generate service services/http/$name'Http'
+    ng generate service services/http/$name/$name'Http'
     ;;
   "data")
     echo "Criando Service $name"
-    ng generate service services/data/$name'Data'
+    ng generate service services/data/$name/$name'Data'
     ;;
   "websocket")
     echo "Criando Service $name"
@@ -27,6 +27,10 @@ case "$type" in
   "storage")
     echo "Criando Service $name"
     ng generate service services/storage/$name/$name'Storage'
+    ;;
+  "facade")
+    echo "Criando Service $name"
+    ng generate service services/facade/$name/$name'facade'
     ;;
   "guard")
     echo "Criando Guard $name"

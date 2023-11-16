@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.hmg';
-import { objectToHttpParams } from '../../utils/object-to-query-params';
-import { CardDetailsRequest, CardsRequest } from '../models/request/cards.request.model';
-import { CardResponse } from '../models/response/cards.response';
-import { CommonResponse } from '../models/response/common.response';
+import { environment } from '../../../../environments/environment.hmg';
+import { objectToHttpParams } from '../../../utils/object-to-query-params';
+import { CardDetailsRequest, CardsRequest } from '../../models/request/cards.request.model';
+import { CardResponse } from '../../models/response/cards.response';
+import { CommonResponse } from '../../models/response/common.response';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,6 @@ export class CardsHttpService {
   get(req: CardsRequest): Observable<CommonResponse<CardResponse>> {
     const params: HttpParams = objectToHttpParams(req);
     return this.http.get<CommonResponse<CardResponse>>(`${environment.api}cards`, { params });
-    // https://api.pokemontcg.io/v2/cards?page=1&pageSize=250
   }
 
 

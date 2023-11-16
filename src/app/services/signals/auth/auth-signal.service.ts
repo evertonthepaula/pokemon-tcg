@@ -10,36 +10,25 @@ import { AuthSignalModel } from './auth.signal.model';
 
 // DEFAULT
 import { DEFAULT_AUTH_VALUE } from './auth.signal.default';
+import { IAuth } from '../../models/interfaces/auth.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthSignalService extends BaseSignalService<AuthSignalModel> {
-  constructor(
-    private router: Router,
-    private authStorageService: AuthStorageService
-  ) {
-    super();
-    effect(() => this.authStorageService.set(this.snapshot));
-    this.init();
-  }
-
-  private init() {
-    const storage = this.authStorageService.get();
-    if (storage.signed) {
-      return this.set(storage)
-    }
-
-    return this.set(DEFAULT_AUTH_VALUE);
+export class AuthSignalService extends BaseSignalService<AuthSignalModel> implements IAuth {
+  constructor() {
+    super()
   }
 
   login(token: string): void {
     this.update({ token, signed: true });
-    this.router.navigate(['/dashboard']);
   }
 
   logout(): void {
     this.set(DEFAULT_AUTH_VALUE);
-    this.router.navigate(['/login']);
+  }
+
+  default(payload: AuthSignalModel) {
+    this.set(payload);
   }
 }

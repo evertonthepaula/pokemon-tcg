@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { AuthSignalService } from '../../services/signals/auth/auth-signal.service';
+import { AuthfacadeService } from '../../services/facade/auth/authfacade.service';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +16,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authSignalService: AuthSignalService
+    private authfacadeService: AuthfacadeService
   ) { }
-
 
   ngOnInit() {
     this.buildForm();
@@ -31,16 +30,12 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    console.log('onSubmit');
-    // if (this.loginForm.invalid) {
-    //   return;
-    // }
-
-    // console.log('onSubmit');
-
+    if (this.loginForm.invalid) {
+      return;
+    }
 
     const { apikey } = this.loginForm.getRawValue();
 
-    this.authSignalService.login(apikey);
+    this.authfacadeService.login(apikey);
   }
 }
