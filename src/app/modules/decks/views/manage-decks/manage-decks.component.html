@@ -1,0 +1,75 @@
+<section class="flex">
+  <div class="block flex h-screen w-64">
+    <app-sidebar
+      type="creation"
+      [decks]="decks"
+      [selected]="selected"
+      [hasActions]="true"
+    >
+      <!-- <div class="py-4">
+        <app-page-nav></app-page-nav>
+      </div> -->
+    </app-sidebar>
+  </div>
+
+  <ng-container *ngIf="selected; else noDeckSelected">
+    <div class="flex flex-col w-full p-10">
+      <h1 class="font-bold text-4xl text-rose-500">
+        Agora adicione cartas ao seu deck:
+        <span class="text-red-400">{{ selected }}</span>
+      </h1>
+
+      <a
+        [routerLink]="['/decks/gerenciar']"
+        class="p-1 text-indigo-500 underline bold"
+      >
+        Ir para o deck: <b>{{ selected }}</b>
+      </a>
+
+      <div
+        class="flex flex-wrap items-center justify-center transition-opacity"
+        [@fadeInOut]
+        *ngIf="cardsList$ | async as cardsList; else loader"
+      >
+        @for (card of cardsList.data; track card.id) {
+        <app-poke-card
+          [hasActions]="true"
+          [data]="card"
+          (add)="addCard($event)"
+          (remove)="removeCard($event)"
+        />
+        } @empty {
+        <ng-container *ngTemplateOutlet="noItens"></ng-container>
+        }
+      </div>
+    </div>
+  </ng-container>
+</section>
+
+<ng-template #loader>
+  <div class="h-full flex flex-wrap items-center justify-center">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noDeckSelected>
+  <div class="h-full flex flex-wrap">
+    <h1 class="font-bold text-4xl p-4 text-rose-500 w-full">
+      Manipulação de Deck
+    </h1>
+    <h2 class="font-bold text-1xl px-4 text-rose-500">
+      Selecione um deck ao lado, ou crie um novo para começar a adicionar cartas
+      listadas
+    </h2>
+  </div>
+</ng-template>
+
+<ng-template #noItens>
+  <div
+    class="h-[calc(100vh-120px)] flex flex-wrap items-center justify-center content-center"
+  >
+    <h1 class="font-bold text-4xl p-4 text-rose-500">
+      Sem itens para mostrar!
+    </h1>
+  </div>
+</ng-template>

@@ -1,17 +1,18 @@
+import { PokemonColorsEnum } from '../../enums/pokemon-colors.enum';
 import { AttacksModel } from '../attacks.model';
-import { ImagesCardModel, ImagesSetModel } from '../images.model';
+import { ImagesCardModel } from '../images.model';
 import { LegalitiesModel } from '../legalities.model';
 import { SetsModel } from '../sets.model';
 import { TcgplayerModel } from '../tcgplayer.model';
 import { WeaknessesModel } from '../weaknesses.model';
 
-export interface CardResponse {
+export interface PokemonCardResponse {
   id: string;
   name: string;
   supertype: string;
   subtypes: string[];
   hp: string;
-  types: string[];
+  types: Array<keyof typeof PokemonColorsEnum>;
   evolvesTo: string[];
   rules: string[];
   attacks: AttacksModel[];

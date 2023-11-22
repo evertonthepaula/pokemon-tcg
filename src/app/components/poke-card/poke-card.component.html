@@ -1,6 +1,6 @@
 <div
   [ngClass]="bgColor"
-  class="flex-shrink-0 m-6 relative overflow-hidden rounded-lg max-w-xs shadow-lg poke-card"
+  class="flex-shrink-0 m-6 relative overflow-hidden rounded-lg max-w-xs shadow-lg"
 >
   <svg
     class="absolute bottom-0 left-0 mb-8"
@@ -26,7 +26,7 @@
       fill="white"
     />
   </svg>
-  <div class="relative pt-10 px-10 flex items-center justify-center">
+  <div class="relative pt-1 px-1 flex items-center justify-center poke-card">
     <div
       class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
       style="
@@ -35,20 +35,32 @@
         opacity: 0.2;
       "
     ></div>
-    <img
-      class="relative w-40"
-      src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png"
-      alt=""
-    />
+    <img priority [src]="data.images.small" alt="" />
   </div>
   <div class="relative text-white px-6 pb-6 mt-6">
-    <span class="block opacity-75 -mb-1">Indoor</span>
+    <span class="block opacity-75 -mb-1">
+      {{ data.types[0] }}
+    </span>
     <div class="flex justify-between">
-      <span class="block font-semibold text-xl">Peace Lily</span>
-      <span
-        class="block bg-white rounded-full text-orange-500 text-xs font-bold px-3 py-2 leading-none flex items-center"
-        >$36.00</span
+      <span class="block font-semibold text-xl">
+        {{ data.name }}
+      </span>
+    </div>
+    <div class="pt-4" *ngIf="hasActions">
+      <button
+        (click)="addCard(data)"
+        type="button"
+        class="block bg-white rounded-full text-indigo-500 text-xs font-bold m-1 px-3 py-2 leading-none flex items-center hover:cursor-pointer"
       >
+        Adicionar
+      </button>
+      <button
+        (click)="removeCard(data)"
+        type="button"
+        class="block bg-white rounded-full text-orange-500 text-xs font-bold m-1 px-3 py-2 leading-none flex items-center hover:cursor-pointer"
+      >
+        Remover
+      </button>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthSignalService } from '../../signals/auth/auth-signal.service';
 import { DEFAULT_AUTH_VALUE } from '../../signals/auth/auth.signal.default';
 import { AuthStorageService } from '../../storage/auth/auth-storage.service';
-import { IAuth } from '../../models/interfaces/auth.model';
+import { IAuth } from '../../../models/interfaces/auth.model';
 
 @Injectable({
   providedIn: 'root'

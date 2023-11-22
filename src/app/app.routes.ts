@@ -8,9 +8,14 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'decks',
+    canActivateChild: [authGuard],
+    loadChildren: () => import('./modules/decks/views/decks.routes').then(routes => routes.DecksRoutes)
+  },
+  {
     path: '',
     canActivateChild: [authGuard],
-    loadChildren: () => import('./views/lazy.routes').then(routes => routes.lazyRoutes)
+    loadChildren: () => import('./views/view.routes').then(routes => routes.viewRoutes),
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'login' }
 ];

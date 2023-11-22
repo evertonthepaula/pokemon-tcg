@@ -25,7 +25,7 @@ export class LoginComponent {
 
   private buildForm(): void {
     this.loginForm = this.formBuilder.group({
-      apikey: ['db0f3db7-47de-4602-bc34-b5dab0a9e6fc', [Validators.required]],
+      apikey: [null, [Validators.required]],
     });
   }
 

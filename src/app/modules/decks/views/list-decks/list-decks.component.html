@@ -1,0 +1,82 @@
+<section class="flex">
+  <div class="block flex h-screen w-64">
+    <app-sidebar
+      type="visualization"
+      [decks]="decks"
+      [selected]="selected"
+    ></app-sidebar>
+  </div>
+
+  <ng-container *ngIf="selected; else noDeckSelected">
+    <div class="flex flex-col w-full p-10">
+      <h1 class="font-bold text-4xl text-rose-500">
+        Veja o conteúdo do seu deck:
+        <span class="text-red-400">{{ selected }}</span>
+      </h1>
+
+      <!-- O usuário consegue ver quantos pokemons e cartas de treinador existem no baralho. (atributo supertype) -->
+      <div class="flex flex-col w-full p-10">
+        <p class="font-bold text-1xl text-indigo-500">
+          Cartas neste baralho: <span class="text-red-400">{{ qtdCards }}</span>
+        </p>
+        <p class="font-bold text-1xl text-indigo-500">
+          Cartas do tipo treinador:
+          <span class="text-red-400">{{ qtdCoach }}</span>
+        </p>
+        <p class="font-bold text-1xl text-indigo-500">
+          Cartas do tipo Pokemon:
+          <span class="text-red-400">{{ qtdPokemons }}</span>
+        </p>
+        <!-- TODO  -->
+        <!-- <p class="font-bold text-1xl text-indigo-500">
+          Cores: <span class="text-red-400">não indicado</span>
+        </p> -->
+        <!-- <p class="font-bold text-1xl text-indigo-500">
+          TIPOS ÚNICOS: <span class="text-red-400">não indicado</span>
+        </p> -->
+      </div>
+
+      <div
+        class="flex flex-wrap items-center justify-center transition-opacity"
+        [@fadeInOut]
+        *ngIf="!isLoading; else loader"
+      >
+        @for (card of cardsList; track card.id) {
+        <app-poke-card [data]="card" />
+        } @empty {
+        <ng-container *ngTemplateOutlet="noItens"></ng-container>
+        }
+      </div>
+    </div>
+  </ng-container>
+</section>
+
+<ng-template #loader>
+  <div class="h-full flex flex-wrap items-center justify-center">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noDeckSelected>
+  <div class="h-full flex flex-wrap items-center">
+    <h1 class="font-bold text-4xl text-rose-500 w-full">
+      Nenhum Deck Selecionado!
+    </h1>
+    <a
+      [routerLink]="['/decks/adicionar']"
+      class="p-1 text-indigo-500 underline bold"
+    >
+      Criar Baralho com novas cartas
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #noItens>
+  <div
+    class="h-[calc(100vh-120px)] flex flex-wrap items-center justify-center content-center"
+  >
+    <h1 class="font-bold text-4xl p-4 text-rose-500">
+      Sem itens para mostrar!
+    </h1>
+  </div>
+</ng-template>

@@ -5,6 +5,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .poke-card:before,
 .poke-card:after {
   content: "";
@@ -36,6 +37,7 @@
   opacity: 0;
   z-index: 2;
   animation: holoSparkle 20s ease infinite;
+  border-radius: 8px;
 }
 
 .poke-card.active:before {

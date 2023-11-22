@@ -20,10 +20,6 @@ export class PokeCardEspecialComponent {
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(e: MouseEvent): void {
-    console.log('Mouse move:', e);
-
-
-
     // normalise touch/mouse
     var pos = [e.offsetX, e.offsetY];
     e.preventDefault();
@@ -73,7 +69,6 @@ export class PokeCardEspecialComponent {
 
   @HostListener('mouseout', ['$event'])
   onMouseMoveOut(event: MouseEvent): void {
-    console.log('Mouse move Out:', event);
     this.animated = true;
     this.active = false;
     this.style = "";

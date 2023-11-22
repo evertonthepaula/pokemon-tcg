@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CardsHttpService } from './cards-http.service';
+import { DecksStorageService } from './decks-storage.service';
 
-describe('CardsHttpService', () => {
-  let service: CardsHttpService;
+describe('DecksStorageService', () => {
+  let service: DecksStorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CardsHttpService);
+    service = TestBed.inject(DecksStorageService);
   });
 
   it('should be created', () => {

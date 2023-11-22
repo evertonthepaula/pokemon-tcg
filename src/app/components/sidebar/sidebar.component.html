@@ -1,0 +1,85 @@
+<div class="h-full flex flex-row font-poppins antialiased fixed">
+  <div
+    id="sidebar"
+    class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
+    x-show="sidenav"
+  >
+    <div class="space-y-6 md:space-y-10 mt-10">
+      <h1 class="font-bold text-4xl text-center">
+        Pokemon T<span class="text-red-400">.</span>C<span class="text-rose-600"
+          >.</span
+        >G
+      </h1>
+
+      @if(type == 'creation') {
+      <div
+        class="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500"
+      >
+        <input
+          [formControl]="newItenInput"
+          type="text"
+          class="w-full rounded-tl-md rounded-bl-md px-2 py-3 text-sm text-gray-600 focus:outline-none"
+          placeholder="Criar um novo deck"
+        />
+        <button
+          (click)="newItem()"
+          class="rounded-tr-md rounded-br-md px-2 py-3 hidden md:block bg-indigo-500"
+        >
+          +
+        </button>
+      </div>
+      }
+
+      <div *ngIf="decks" id="menu" class="flex flex-col space-y-2">
+        <h2
+          class="font-medium text-xs md:text-sm text-center text-rose-500"
+          *ngIf="decks.length"
+        >
+          Selecione um Deck
+        </h2>
+
+        @for (deck of decks; track deck) {
+        <div
+          [ngClass]="{ 'bg-blue-300': selected === deck }"
+          class="flex content-center items-center justify-between hover:bg-teal-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out"
+        >
+          <a
+            (click)="select(deck)"
+            class="text-sm font-medium text-gray-700 py-2 px-2 h hover:cursor-pointer"
+          >
+            <svg
+              class="w-6 h-6 fill-current inline-block"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              ></path>
+            </svg>
+            <span class="">{{ deck }}</span>
+          </a>
+          <span (click)="deleteDeck(deck)" *ngIf="hasActions">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-2 hover:cursor-pointer"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+          </span>
+        </div>
+        }
+      </div>
+
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,8 @@ import { AuthSignalModel } from './auth.signal.model';
 
 // DEFAULT
 import { DEFAULT_AUTH_VALUE } from './auth.signal.default';
-import { IAuth } from '../../models/interfaces/auth.model';
+import { IAuth } from '../../../models/interfaces/auth.model';
+
 
 @Injectable({
   providedIn: 'root'

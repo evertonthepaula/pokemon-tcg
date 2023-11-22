@@ -21,20 +21,20 @@ export abstract class BaseStorageService<T> {
    * @param value - the new storage value
    */
   set(value: T): void {
-    sessionStorage.setItem(this.key, JSON.stringify(value));
+    localStorage.setItem(this.key, JSON.stringify(value));
   }
 
   /**
    * Returns a storage value
    */
   get(): T {
-    return JSON.parse(sessionStorage.getItem(this.key) || '');
+    return JSON.parse(localStorage.getItem(this.key) || '{}');
   }
 
   /**
    * Remove storage
    */
   remove(): void {
-    return sessionStorage.removeItem(this.key);
+    return localStorage.removeItem(this.key);
   }
 }
